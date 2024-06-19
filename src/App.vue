@@ -1,20 +1,18 @@
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-    <AppFooter/>
+    <AppBanner/>
+    <AppHeader/>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import AppFooter from './components/AppFooter.vue';
+import AppBanner from "@/components/AppBanner.vue";
+import AppHeader from "@/components/AppHeader.vue";
 
 export default {
   components: {
-    HelloWorld,
-    AppFooter,
+    AppBanner,
+    AppHeader,
   }
 }
 </script>
