@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="mt-64" elevation="2">
+  <v-sheet class="mt-64 z-index-10" elevation="2">
     <v-container>
       <v-sheet class="d-flex align-center justify-space-between">
         <v-sheet>
@@ -88,6 +88,9 @@ export default {
 <style scoped>
 .mt-64 {
   margin-top: 64px;
+}
+.z-index-10 {
+  z-index: 10;
 }
 </style>
 
