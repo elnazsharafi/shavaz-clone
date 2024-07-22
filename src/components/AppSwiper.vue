@@ -1,3 +1,37 @@
+<script>
+import {register} from 'swiper/element/bundle';
+
+register();
+
+export default {
+  data: () => ({
+    swiperItems: [
+      {path: "/swiper", imageUrl: "/images/card1.webp"},
+      {path: "/swiper", imageUrl: "/images/card2.webp"},
+      {path: "/swiper", imageUrl: "/images/card3.webp"},
+      {path: "/swiper", imageUrl: "/images/card4.webp"},
+      {path: "/swiper", imageUrl: "/images/card5.jpg"},
+      {path: "/swiper", imageUrl: "/images/card6.webp"},
+    ]
+  }),
+  setup() {
+    const onProgress = (e) => {
+      const [swiper, progress] = e.detail;
+      console.log(progress, swiper)
+    };
+
+    const onSlideChange = (e) => {
+      console.log('slide changed', e)
+    }
+
+    return {
+      onProgress,
+      onSlideChange,
+    };
+  },
+}
+</script>
+
 <template>
   <swiper-container
       class="swiper"
@@ -32,39 +66,6 @@
   </swiper-container>
 </template>
 
-<script>
-import {register} from 'swiper/element/bundle';
-
-register();
-
-export default {
-  data: () => ({
-    swiperItems: [
-      {path: "/swiper", imageUrl: "/images/card1.webp"},
-      {path: "/swiper", imageUrl: "/images/card2.webp"},
-      {path: "/swiper", imageUrl: "/images/card3.webp"},
-      {path: "/swiper", imageUrl: "/images/card4.webp"},
-      {path: "/swiper", imageUrl: "/images/card5.jpg"},
-      {path: "/swiper", imageUrl: "/images/card6.webp"},
-    ]
-  }),
-  setup() {
-    const onProgress = (e) => {
-      const [swiper, progress] = e.detail;
-      console.log(progress, swiper)
-    };
-
-    const onSlideChange = (e) => {
-      console.log('slide changed', e)
-    }
-
-    return {
-      onProgress,
-      onSlideChange,
-    };
-  },
-}
-</script>
 <style scoped>
 .swiper {
   width: 100%;

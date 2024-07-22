@@ -1,9 +1,28 @@
+<script>
+export default {
+  data: () => ({
+    menuItems: [
+      {title: 'دسته‌بندی‌ها', path: '/home', icon: 'mdi-menu'},
+      {title: 'پرفروش ترین های هفته', path: '/home', icon: 'mdi-lightning-bolt-outline'},
+      {title: 'محصولات تخفیف دار', path: '/signup', icon: 'mdi-sale-outline'},
+      {title: 'بلاگ', path: '/signup', icon: 'mdi-post-outline'},
+      {title: 'تماس با ما', path: '/signin', icon: 'mdi-phone-outline'},
+      {title: 'درباره ما', path: '/signin', icon: 'mdi-storefront-outline'},
+    ],
+    actionItems: [
+      {icon: 'mdi-heart-outline', path: '/signup'},
+      {icon: 'mdi-cart-minus', path: '/signup'},
+    ],
+  }),
+}
+</script>
+
 <template>
   <v-sheet class="mt-64 z-index-10" elevation="2">
     <v-container>
       <v-sheet class="d-flex align-center justify-space-between">
         <v-sheet>
-          <img src="../assets/logo.svg" alt="Shavaz Logo" width="107" height="38" title="Shavaz Logo">
+          <img src="../assets/images/logo.svg" alt="Shavaz Logo" width="107" height="38" title="Shavaz Logo">
         </v-sheet>
         <v-sheet class="w-50 mx-2">
           <v-text-field
@@ -57,6 +76,7 @@
           </v-btn>
         </v-sheet>
         <v-btn
+            style="color: #D72685"
             variant="text">
           <template v-slot:prepend>
             <v-icon>mdi-fire</v-icon>
@@ -67,28 +87,12 @@
     </v-container>
   </v-sheet>
 </template>
-<script>
-export default {
-  data: () => ({
-    menuItems: [
-      {title: 'دسته‌بندی‌ها', path: '/home', icon: 'mdi-menu'},
-      {title: 'پرفروش ترین های هفته', path: '/home', icon: 'mdi-lightning-bolt-outline'},
-      {title: 'محصولات تخفیف دار', path: '/signup', icon: 'mdi-sale-outline'},
-      {title: 'بلاگ', path: '/signup', icon: 'mdi-post-outline'},
-      {title: 'تماس با ما', path: '/signin', icon: 'mdi-phone-outline'},
-      {title: 'درباره ما', path: '/signin', icon: 'mdi-storefront-outline'},
-    ],
-    actionItems: [
-      {icon: 'mdi-heart-outline', path: '/signup'},
-      {icon: 'mdi-cart-minus', path: '/signup'},
-    ],
-  }),
-}
-</script>
+
 <style scoped>
 .mt-64 {
   margin-top: 64px;
 }
+
 .z-index-10 {
   z-index: 10;
 }
