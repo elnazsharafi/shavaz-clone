@@ -6,21 +6,29 @@ export default {
   data() {
     const now = new Date();
     const newYear = new Date(now.getFullYear() + 1, 0, 1);
+
     return {
       time: newYear - now,
-      swiperItems: [
-        {off: "10%", imageUrl: "/images/surprise3.webp", text: "143,500تومان"},
-        {off: "40%", imageUrl: "/images/surprise4.webp", text: "83,000تومان"},
-        {off: "30%", imageUrl: "/images/surprise5.webp", text: "120,000تومان"},
-        {off: "10%", imageUrl: "/images/surprise6.webp", text: "50,500تومان"},
-        {off: "20%", imageUrl: "/images/surprise7.webp", text: "63,700تومان"},
-        {off: "15%", imageUrl: "/images/surprise2.webp", text: "82,900تومان"},
-        {off: "50%", imageUrl: "/images/surprise8.webp", text: "72,500تومان"},
-        {off: "30%", imageUrl: "/images/surprise9.webp", text: "190,500تومان"},
-        {off: "15%", imageUrl: "/images/surprise1.webp", text: "80,000تومان"},
-      ]
+      surpriseItems :[],
+      // swiperItems: [
+      //   {off: "10%", imageUrl: "/images/surprise3.webp", text: "143,500تومان"},
+      //   {off: "40%", imageUrl: "/images/surprise4.webp", text: "83,000تومان"},
+      //   {off: "30%", imageUrl: "/images/surprise5.webp", text: "120,000تومان"},
+      //   {off: "10%", imageUrl: "/images/surprise6.webp", text: "50,500تومان"},
+      //   {off: "20%", imageUrl: "/images/surprise7.webp", text: "63,700تومان"},
+      //   {off: "15%", imageUrl: "/images/surprise2.webp", text: "82,900تومان"},
+      //   {off: "50%", imageUrl: "/images/surprise8.webp", text: "72,500تومان"},
+      //   {off: "30%", imageUrl: "/images/surprise9.webp", text: "190,500تومان"},
+      //   {off: "15%", imageUrl: "/images/surprise1.webp", text: "80,000تومان"},
+      // ]
     }
   },
+  mounted() {
+    fetch('http://localhost:8000/api/surprise-items')
+        .then(response => response.json())
+        .then(items => this.surpriseItems = items)
+        .catch(err => console.log(err.message))
+  }
 }
 </script>
 
@@ -49,7 +57,7 @@ export default {
       <!--      prevEl: '.swiper-button-prev',-->
       <!--      }"-->
       <swiper-slide
-          v-for="item in swiperItems"
+          v-for="item in surpriseItems"
           :key="item.imageUrl"
       >
         <v-card
