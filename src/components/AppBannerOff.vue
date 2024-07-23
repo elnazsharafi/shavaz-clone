@@ -1,11 +1,14 @@
 <script>
 export default {
   data: () => ({
-    bannerOff: [
-      {imageUrl: "/images/bishtarin takhfif.webp"},
-      {imageUrl: "/images/porfrosh tarin.webp"},
-    ]
+    discountBanners: [],
   }),
+  mounted() {
+    fetch('http://localhost:8000/api/discount-banners')
+        .then(response => response.json())
+        .then(banners => this.discountBanners = banners)
+        .catch(err => console.log(err.message))
+  }
 }
 </script>
 
@@ -14,7 +17,7 @@ export default {
       class=" d-flex justify-space-evenly align-center mt-10"
   >
     <router-link to="" class=" cursor-pointer"
-                 v-for="item in bannerOff"
+                 v-for="item in discountBanners"
                  :key="item.imageUrl"
     >
       <v-img :src="item.imageUrl" width="635px" class="rounded-lg"></v-img>
