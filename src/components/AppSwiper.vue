@@ -5,14 +5,7 @@ register();
 
 export default {
   data: () => ({
-    swiperItems: [
-      {path: "/swiper", imageUrl: "/images/card1.webp"},
-      {path: "/swiper", imageUrl: "/images/card2.webp"},
-      {path: "/swiper", imageUrl: "/images/card3.webp"},
-      {path: "/swiper", imageUrl: "/images/card4.webp"},
-      {path: "/swiper", imageUrl: "/images/card5.jpg"},
-      {path: "/swiper", imageUrl: "/images/card6.webp"},
-    ]
+    swiperItems: [],
   }),
   setup() {
     const onProgress = (e) => {
@@ -29,6 +22,12 @@ export default {
       onSlideChange,
     };
   },
+  mounted() {
+    fetch('http://localhost:8000/api/swiper-items')
+        .then(response => response.json())
+        .then(items => this.swiperItems = items)
+        .catch(err => console.log(err.message))
+  },
 }
 </script>
 
@@ -44,7 +43,6 @@ export default {
       }"
       :pagination="{
         clickable: true,
-        dynamicBullets: true,
       }"
       :breakpoints="{
         768: {
