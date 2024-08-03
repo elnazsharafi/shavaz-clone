@@ -1,6 +1,15 @@
 <script>
+import {it} from "vuetify/locale";
+
 export default {
+  computed: {
+    it() {
+      return it
+    }
+  },
   data: () => ({
+    isLoggedIn: Boolean(localStorage.getItem('auth-token')),
+    mobile: localStorage.getItem('user-mobile'),
     menuItems: [
       {title: 'دسته‌بندی‌ها', path: '/home', icon: 'mdi-menu'},
       {title: 'پرفروش ترین های هفته', path: '/home', icon: 'mdi-lightning-bolt-outline'},
@@ -13,6 +22,11 @@ export default {
       {icon: 'mdi-heart-outline', path: '/signup'},
       {icon: 'mdi-cart-minus', path: '/signup'},
     ],
+    profileItems: [
+      {title: 'لیست سفارشات', path: '/', icon: 'mdi-cart-minus'},
+      {title: 'علاقمندی‌ها', path: '/', icon: 'mdi-heart-outline'},
+      {title: 'خروج', path: '/logout', icon: 'mdi-exit-to-app'},
+    ]
   }),
 }
 </script>
@@ -38,6 +52,7 @@ export default {
         </v-sheet>
         <v-sheet class="d-flex align-center justify-space-between">
           <v-btn
+              v-if="!isLoggedIn"
               to="/login"
               density="comfortable"
               variant="outlined"
@@ -47,6 +62,32 @@ export default {
               <v-icon>mdi-login</v-icon>
             </template>
             ورود | ثبت نام
+          </v-btn>
+          <v-btn
+              v-if="isLoggedIn"
+              density="comfortable"
+              variant="outlined"
+              class="mx-2"
+          >
+            <template v-slot:prepend>
+              <v-icon>mdi-account-outline</v-icon>
+            </template>
+            {{ this.mobile }}
+
+            <v-menu activator="parent">
+              <v-list>
+                <v-list-item
+                    v-for="(item, index) in profileItems"
+                    :key="index"
+                    :value="index"
+                    :to="item.path"
+                    :prepend-icon="item.icon"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+
           </v-btn>
           <template v-for="item in actionItems" :key="item.icon">
             <v-divider
